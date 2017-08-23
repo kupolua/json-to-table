@@ -16,13 +16,13 @@
   </head>
 
   <body>
-        <div class="json-table" data-url="http://localhost:3000/sourceList" data-hook="hookFunction" data-path="$..persons"></div>
+        <div class="json-table" data-url="http://localhost:3000/sourceList" data-hook-on-raw-selected="hookFunction" data-json-path="$..persons"></div>
 
         <script src="json-table.js"></script>
 
         <script type="text/javascript">
-            function hookFunction(rowData){
-                console.log('Callback from index.html', rowData);
+            function hookFunction(rawData){
+                console.log('Callback from index.html', rawData);
             }
         </script>
   </body>
