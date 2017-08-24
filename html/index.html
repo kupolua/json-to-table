@@ -12,17 +12,26 @@
       content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1"
     >
     <link rel="stylesheet" href="css/react-table.css">
+    <style type="text/css">
+        .tableConfig {
+            --header-toolbar-height: 35;
+            --header-column-height: 30;
+            --row-height: 26;
+            --rows-per-page: 10;
+            --rows-size-list: 10, 20, 50;
+        }
+    </style>
 
   </head>
 
   <body>
-        <div class="json-table" data-url="http://localhost:3000/sourceList" data-hook-on-raw-selected="hookFunction" data-json-path="$..persons"></div>
+        <div class="json-table tableConfig" data-url="http://localhost:3000/sourceList" data-hook-on-row-selected="hookFunction" data-json-path="$..persons"></div>
 
         <script src="json-table.js"></script>
 
         <script type="text/javascript">
-            function hookFunction(rawData){
-                console.log('Callback from index.html', rawData);
+            function hookFunction(rowData){
+                console.log('\'on row selected\' hook result', rowData);
             }
         </script>
   </body>
