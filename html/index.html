@@ -96,9 +96,9 @@
   <button type="button" class="btn btn-info">Info</button>
   <button type="button" class="btn btn-light">Light</button>
   <button type="button" class="btn btn-dark">Dark</button>
+  <button type="button" class="btn btn-link">Link</button>
 
   </p>Modal<hr>
-  <button type="button" class="btn btn-link">Link</button>
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
       Launch demo modal
@@ -123,6 +123,10 @@
           </div>
       </div>
   </div>
+  </p>Tooltip<hr>
+  <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+      Tooltip on top
+  </button>
   </p>
   <div class="json-table tableConfig" data-url="http://localhost:3001/sourceList" data-hook-on-row-selected="hookFunction" data-json-path="$..persons"></div>
         <script src="json-table.js"></script>
@@ -131,6 +135,12 @@
             function hookFunction(rowData){
                 console.log('\'on row selected\' hook result', rowData);
             }
+        </script>
+
+        <script>
+          $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+          })
         </script>
   </body>
 </html>
