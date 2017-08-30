@@ -25,12 +25,17 @@
   </head>
 
   <body>
-        <div class="json-table tableConfig" data-url="http://localhost:3000/sourceList" data-hook-on-row-selected="hookFunction" data-json-path="$..persons"></div>
+        <div class="json-table tableConfig"
+             data-url="http://localhost:3001/sourceList"
+             data-hook-on-row-selected="hookFunction"
+             data-json-path="$..persons"
+        ></div>
 
         <script src="json-table.js"></script>
 
         <script type="text/javascript">
             function hookFunction(rowData){
+                jasonTableFunctions.refresh();
                 console.log('\'on row selected\' hook result', rowData);
             }
         </script>
