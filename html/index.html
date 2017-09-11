@@ -71,6 +71,7 @@
         <button onclick="fetchSelectedRows('1')">Click to fetch selected rows</button>
 
     <!-- Example:
+        data-column-text-length="30"
         data-custom-fields="firstName=First Name, age=Age"
         data-provider-function="dataProviderFunction"
     -->
@@ -78,7 +79,7 @@
              id="1"
              data-url="http://localhost:3001/sourceList"
              data-json-path="$..persons"
-             data-custom-fields="firstName=First Name, age=Age"
+             data-column-text-length="30"
              data-show-checkboxes="true"
              data-hook-on-row-selected="hookFunction"
              data-provider-function=""
