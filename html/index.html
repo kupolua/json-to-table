@@ -28,7 +28,7 @@
     <!-- Input custom scripts before react component -->
       <script type="text/javascript">
           function dataProviderFunction(){
-              let data = {
+              let data = [{
                   "persons": [
                       {
                           "firstName": "wPavel",
@@ -46,44 +46,65 @@
                           "age": 50
                       }
                   ]
-              };
+              }];
 
               return data;
           }
       </script>
       <script type="text/javascript">
           function hookFunction(rowData){
-              console.log('\'on row selected\' hook result', rowData);
+//              console.log('\'on row selected\' hook result', rowData);
           }
       </script>
 
+      <script type="text/javascript">
+          function fetchSelectedRows(id){
+              console.log('fetchSelectedRows(id)', id)
+              let selectedRows = jsonTableFunctions.fetchSelectedRows(id);
+
+              console.log(selectedRows)
+          }
+        </script>
+
     <!-- React component -->
         <button onclick="jsonTableFunctions.refresh('1')">Click to refresh table</button>
+        <button onclick="fetchSelectedRows('1')">Click to fetch selected rows</button>
+
+    <!-- Example:
+        data-column-text-length="30"
+        data-custom-fields="firstName=First Name, age=Age"
+        data-provider-function="dataProviderFunction"
+    -->
       <div class="json-table tableConfig"
              id="1"
              data-url="http://localhost:3001/sourceList"
              data-json-path="$..persons"
+             data-column-text-length="30"
+             data-show-checkboxes="true"
              data-hook-on-row-selected="hookFunction"
-            <!--Example: dataProviderFunction() in use-->
-             data-provider-function="dataProviderFunction"
+             data-provider-function=""
         ></div>
         <button onclick="jsonTableFunctions.refresh('2')">Click to refresh table</button>
+        <button onclick="jsonTableFunctions.fetchSelectedRows('2')">Click to fetch selected rows</button>
       <div class="json-table tableConfig"
              id="2"
              data-url="http://localhost:3001/sourceList"
              data-json-path="$..students"
+             data-custom-fields=""
+             data-show-checkboxes="false"
              data-hook-on-row-selected="hookFunction"
-            <!--Example: dataProviderFunction() unused-->
-             <!--data-provider-function="dataProviderFunction"-->
+             data-provider-function=""
         ></div>
         <button onclick="jsonTableFunctions.refresh('3')">Click to refresh table</button>
+        <button onclick="jsonTableFunctions.fetchSelectedRows('3')">Click to fetch selected rows</button>
       <div class="json-table tableConfig"
              id="3"
              data-url="http://localhost:3001/sourceList"
-             data-hook-on-row-selected="hookFunction"
              data-json-path="$..companies"
-            <!--Example: dataProviderFunction() unused-->
-             <!--data-provider-function="dataProviderFunction"-->
+             data-custom-fields=""
+             data-show-checkboxes="false"
+             data-hook-on-row-selected="hookFunction"
+             data-provider-function=""
         ></div>
 
         <script src="json-table.js"></script>
