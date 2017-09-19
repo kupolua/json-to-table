@@ -68,6 +68,7 @@
 
     <!-- React component -->
         <button onclick="jsonTableFunctions.refresh('1')">Click to refresh table</button>
+        <button onclick="jsonTableFunctions.filterData('1', 'Pavel')">Click to filter data</button>
         <button onclick="fetchSelectedRows('1')">Click to fetch selected rows</button>
 
     <!-- Example:
@@ -79,7 +80,7 @@
              id="1"
              data-url="http://localhost:3001/sourceList"
              data-json-path="$..persons"
-             data-column-text-length="30"
+             data-column-text-length="20"
              data-show-checkboxes="true"
              data-hook-on-row-selected="hookFunction"
              data-provider-function=""
