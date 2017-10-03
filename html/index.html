@@ -53,16 +53,16 @@
       </script>
       <script type="text/javascript">
           function hookFunction(rowData){
-              console.log('\'on row selected\' hook result', rowData);
+//              console.log('\'on row selected\' hook result', rowData);
           }
       </script>
 
       <script type="text/javascript">
           function fetchSelectedRows(id){
-              console.log('fetchSelectedRows(id)', id)
+//              console.log('fetchSelectedRows(id)', id)
               let selectedRows = jsonTableFunctions.fetchSelectedRows(id);
 
-              console.log(selectedRows)
+//              console.log(selectedRows)
           }
         </script>
 
@@ -87,6 +87,7 @@
         ></div>
         <button onclick="jsonTableFunctions.refresh('2')">Click to refresh table</button>
         <button onclick="jsonTableFunctions.fetchSelectedRows('2')">Click to fetch selected rows</button>
+<!--
       <div class="json-table tableConfig"
              id="2"
              data-url="http://localhost:3001/sourceList"
@@ -107,6 +108,7 @@
              data-hook-on-row-selected="hookFunction"
              data-provider-function=""
         ></div>
+-->
 
         <script src="json-table.js"></script>
   </body>
