@@ -73,13 +73,14 @@
 
     <!-- Example:
         data-column-text-length="30"
-        data-custom-fields="firstName=First Name, age=Age"
+        data-custom-fields='[{"fieldName":"firstName","columnName":"First Name","columnWidth":150},{"fieldName":"age","columnName":"Age","columnWidth":80}]'
         data-provider-function="dataProviderFunction"
     -->
       <div class="json-table tableConfig"
              id="1"
              data-url="http://localhost:3001/sourceList"
              data-json-path="$..persons"
+             data-custom-fields='[{"fieldName":"firstName","columnName":"First Name","columnWidth":150},{"fieldName":"age","columnName":"Age","columnWidth":80}]'
              data-column-text-length="20"
              data-show-checkboxes="true"
              data-hook-on-row-selected="hookFunction"
@@ -87,7 +88,7 @@
         ></div>
         <button onclick="jsonTableFunctions.refresh('2')">Click to refresh table</button>
         <button onclick="jsonTableFunctions.fetchSelectedRows('2')">Click to fetch selected rows</button>
-<!--
+
       <div class="json-table tableConfig"
              id="2"
              data-url="http://localhost:3001/sourceList"
@@ -108,7 +109,6 @@
              data-hook-on-row-selected="hookFunction"
              data-provider-function=""
         ></div>
--->
 
         <script src="json-table.js"></script>
   </body>
