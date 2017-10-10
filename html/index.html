@@ -509,7 +509,14 @@
     <!-- Example:
         data-hook-on-row-selected="hookFunction"
         data-column-text-length="30"
-        data-custom-fields='[{"fieldName":"firstName","columnName":"First Name","columnWidth":150},{"fieldName":"age","columnName":"Age","columnWidth":80}]'
+        data-custom-fields='[
+                {"fieldName":"firstName","columnName":"First Name","columnWidth":30},
+                {"fieldName":"lastName","columnName":"Last Name","columnWidth":30},
+                {"fieldName":"age","columnName":"Age","columnWidth":10},
+                {"fieldName":"cellPhone","columnName":"Cell Phone","columnWidth":30},
+                {"fieldName":"notes","columnName":"Notes","columnWidth":180},
+                {"fieldName":"terms","columnName":"Terms","columnWidth":180}
+             ]'
         data-provider-function="dataProviderFunction"
     -->
       <div class="json-table tableConfig"
@@ -524,7 +531,7 @@
                 {"fieldName":"notes","columnName":"Notes","columnWidth":180},
                 {"fieldName":"terms","columnName":"Terms","columnWidth":180}
              ]'
-             data-column-text-length="80"
+             data-column-text-length="50"
              data-show-checkboxes="false"
              data-hook-on-row-selected="hookFunction"
              data-provider-function="dataProviderFunction"
