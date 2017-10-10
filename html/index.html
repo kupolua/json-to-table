@@ -45,7 +45,7 @@
 //                          "age": 42,
 //                          "cellPhone": "+380123456789",
 //                          "notes": "JavaScript (JS) is a lightweight interpreted or JIT-compiled programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as node.js, Apache CouchDB and Adobe Acrobat. JavaScript is a prototype-based, multi-paradigm, dynamic language, supporting object-oriented, imperative, and declarative (e.g. functional programming) styles. Read more about JavaScript.",
-//                          "terms": "Please read the terms of this entire document  (“Terms”) carefully because it explains your rights and responsibilities when you visit any of Mozilla’s websites (“Websites”), or related feeds, social media, newsletters, source code repositories, and emails (together with Websites, these are collectively referred to as “Communications”). By accessing or signing up to receive Communications, you agree to be bound by these Terms."
+//                           "terms": "Please read the terms of this entire document  (“Terms”) carefully because it explains your rights and responsibilities when you visit any of Mozilla’s websites (“Websites”), or related feeds, social media, newsletters, source code repositories, and emails (together with Websites, these are collectively referred to as “Communications”). By accessing or signing up to receive Communications, you agree to be bound by these Terms."
 //                      },
 //                      {
 //                          "id": 2,
@@ -516,8 +516,15 @@
              id="1"
              data-url="http://localhost:3001/sourceList"
              data-json-path="$..persons"
-             data-custom-fields='[{"fieldName":"firstName","columnName":"First Name","columnWidth":150},{"fieldName":"age","columnName":"Age","columnWidth":80}]'
-             data-column-text-length="20"
+             data-custom-fields='[
+                {"fieldName":"firstName","columnName":"First Name","columnWidth":30},
+                {"fieldName":"lastName","columnName":"Last Name","columnWidth":30},
+                {"fieldName":"age","columnName":"Age","columnWidth":10},
+                {"fieldName":"cellPhone","columnName":"Cell Phone","columnWidth":30},
+                {"fieldName":"notes","columnName":"Notes","columnWidth":180},
+                {"fieldName":"terms","columnName":"Terms","columnWidth":180}
+             ]'
+             data-column-text-length="80"
              data-show-checkboxes="false"
              data-hook-on-row-selected="hookFunction"
              data-provider-function="dataProviderFunction"
