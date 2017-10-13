@@ -488,7 +488,7 @@
       </script>
       <script type="text/javascript">
           function hookFunction(rowData){
-//              console.log('\'on row selected\' hook result', rowData);
+              console.log('\'on row selected\' hook result', rowData);
           }
       </script>
 
@@ -524,6 +524,7 @@
              data-url="http://localhost:3001/sourceList"
              data-json-path="$..persons"
              data-custom-fields='[
+                {"fieldName":"id","columnName":"ID","columnWidth":15},
                 {"fieldName":"firstName","columnName":"First Name","columnWidth":30},
                 {"fieldName":"lastName","columnName":"Last Name","columnWidth":30},
                 {"fieldName":"age","columnName":"Age","columnWidth":10},
@@ -537,7 +538,7 @@
              data-provider-function="dataProviderFunction"
         ></div>
 
-<!--&lt;!&ndash;-->
+<!--
         <button onclick="jsonTableFunctions.refresh('2')">Click to refresh table</button>
         <button onclick="fetchSelectedRows('2')">Click to fetch selected rows</button>
 
@@ -559,7 +560,7 @@
              data-hook-on-row-selected="hookFunction"
              data-provider-function=""
         ></div>
-<!--&ndash;&gt;-->
+-->
 
         <script src="json-table.js"></script>
   </body>
