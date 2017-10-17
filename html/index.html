@@ -30,7 +30,7 @@
     <!-- Input custom scripts before react component -->
       <script type="text/javascript">
           function dataProviderFunction() {
-              function TableDataCreator() { 
+              function TableDataGenerator() { 
                   this.data = []; 
                   this.teachers = [ 
                       { 
@@ -148,18 +148,18 @@
 
                       return projectsList;
                   };
-                  this.build = function() { 
+                  this.generate = function() { 
                       return {
                           teachers: this.fetchTeachersList(this),
                           students: this.fetchStudentsList(this),
                           projects: this.fetchProjectsList(this),
                       }
                   }; 
-              }).call(TableDataCreator.prototype); 
+              }).call(TableDataGenerator.prototype); 
 
-              let data =  new TableDataCreator(); 
+              let data =  new TableDataGenerator(); 
 
-              return data.build();
+              return data.generate();
           }
 
       </script>
@@ -167,7 +167,7 @@
           function ajaxDataProviderFunction(){
                return $.ajax({
                   dataType: 'json',
-                  url: 'http://localhost:3001/sourceList',
+                  url: 'https://raw.githubusercontent.com/kupolua/web-presentation/master/json/db.json',
                   success: function(jsondata){
 
                       return jsondata;
@@ -180,7 +180,6 @@
               console.log('\'on row selected\' hook result', rowData);
           }
       </script>
-
       <script type="text/javascript">
           function fetchSelectedRows(id){
               let selectedRows = jsonTableFunctions.fetchSelectedRows(id);
@@ -241,18 +240,9 @@
       <button onclick="fetchSelectedRows('3')">Click to fetch selected rows</button>
       <div class="json-table tableConfig"
              id="3"
-             data-url="http://localhost:3001/noPath"
-             data-json-path="$"
+             data-url="https://raw.githubusercontent.com/kupolua/web-presentation/master/json/db.json"
+             data-json-path="$..companies"
              data-column-text-length="30"
-             data-custom-fields='[
-                {"fieldName":"id","columnName":"ID","columnWidth":5},
-                {"fieldName":"firstName","columnName":"First Name","columnWidth":20},
-                {"fieldName":"lastName","columnName":"Last Name","columnWidth":20},
-                {"fieldName":"age","columnName":"Age","columnWidth":10},
-                {"fieldName":"cellPhone","columnName":"Cell Phone","columnWidth":30},
-                {"fieldName":"notes","columnName":"Notes","columnWidth":180},
-                {"fieldName":"terms","columnName":"Terms","columnWidth":180}
-             ]'
              data-show-checkboxes="false"
              data-hook-on-row-selected="hookFunction"
         ></div>
