@@ -1,0 +1,252 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Simple Table</title>
+    <meta name="description" content="Simple Table">
+
+    <!-- Use minimum-scale=1 to enable GPU rasterization -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1"
+    >
+
+    <style type="text/css">
+        .tableConfig {
+            --header-toolbar-height: 35;
+            --header-column-height: 30;
+            --row-height: 26;
+            --rows-per-page: 10;
+            --rows-size-list: 10, 20, 50;
+        }
+    </style>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  </head>
+
+  <body>
+    <!-- Input custom scripts before react component -->
+      <script type="text/javascript">
+          function dataProviderFunction() {
+              function TableDataGenerator() { 
+                  this.data = []; 
+                  this.teachers = [ 
+                      { 
+                          "firstName": "John", 
+                          "lastName": "Smith", 
+                          "age": 30, 
+                          "cellPhone": "+380123456789", 
+                      }, 
+                      { 
+                          "firstName": "Medie", 
+                          "lastName": "Lorn", 
+                          "age": 50, 
+                          "cellPhone": "+380987654321", 
+                      }, 
+                      { 
+                          "firstName": "Olsom", 
+                          "lastName": "Clarke", 
+                          "age": 42, 
+                          "cellPhone": "+385678901234", 
+                      }, 
+                      { 
+                          "firstName": "Simon", 
+                          "lastName": "Peres", 
+                          "age": 39, 
+                          "cellPhone": "+386789012345", 
+                      }, 
+                  ];
+                  this.students = [
+                      {
+                          "firstName": "Nuke",
+                          "lastName": "Duke",
+                          "age": 20,
+                          "cellPhone": "+380987654321",
+                      },
+                      {
+                          "firstName": "Irma",
+                          "lastName": "Nested",
+                          "age": 16,
+                          "cellPhone": "+385678901234",
+                      },
+                      {
+                          "firstName": "Oli",
+                          "lastName": "Jurank",
+                          "age": 21,
+                          "cellPhone": "+386789012345",
+                      },
+                      {
+                          "firstName": "Park",
+                          "lastName": "Suzzie",
+                          "age": 20,
+                          "cellPhone": "+380123456789",
+                      },
+                  ];
+                  this.projects = [
+                      {
+                          "name": "React-redux testing system",
+                          "description": "Because most of the Redux code you write are functions, and many of them are pure, they are easy to test without mocking.",
+                          "deadline": "2018-10-27",
+                      },
+                      {
+                          "name": "Sunday school classroom journal",
+                          "description": "Journal writing in the classroom can take many forms. Some teachers use journal writing to meet specific goals; others use journals for more fluid purposes.",
+                          "deadline": "2019-10-27",
+                      },
+                      {
+                          "name": "Indicator",
+                          "description": "A system of classifying or ranking something on a particular scale.",
+                          "deadline": "2020-10-27",
+                      },
+                  ];
+                  this.notes = "JavaScript (JS) is a lightweight interpreted or JIT-compiled programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as node.js, Apache CouchDB and Adobe Acrobat. JavaScript is a prototype-based, multi-paradigm, dynamic language, supporting object-oriented, imperative, and declarative (e.g. functional programming) styles. Read more about JavaScript."; 
+                  this.terms = "Please read the terms of this entire document  (“Terms”) carefully because it explains your rights and responsibilities when you visit any of Mozilla’s websites (“Websites”), or related feeds, social media, newsletters, source code repositories, and emails (together with Websites, these are collectively referred to as “Communications”). By accessing or signing up to receive Communications, you agree to be bound by these Terms.";
+                  this.agreement = "Learning agreements are written agreements with a student meant to support students experiencing significant difficulties by agreeing a way to address problems such as, for example, attendance problems, coursework submission problems, communications problems, welfare concerns, problems with administrative requirements, etc.";
+                  this.LENGTH = 49; 
+              } 
+              (function() { 
+                  this.fetchRandomList = function (list) { 
+                      let randomList = []; 
+
+                      for( let i = 1, min = 0, max = list.length - 1; i < this.LENGTH; i++ ) {
+                        let id = min + Math.floor(Math.random() * (max + 1 - min));
+
+                          randomList[randomList.length] = Object.assign({id: i}, list[id]);
+                      }  
+
+                      return randomList; 
+                  }; 
+                  this.fetchTeachersList = function (_this) {
+                      let teachersList = this.fetchRandomList(_this.teachers);
+
+                      teachersList.forEach(function (teacher, i, teachers) {
+                          teachers[i].notes = _this.notes;
+                          teachers[i].terms = _this.terms;
+                      });
+
+                      return teachersList;
+                  };
+                  this.fetchStudentsList = function (_this) {
+                      let studentsList = this.fetchRandomList(_this.students);
+
+                      studentsList.forEach(function (student, i, students) {
+                          students[i].agreement = _this.agreement;
+                      });
+
+                      return studentsList;
+                  };
+                  this.fetchProjectsList = function (_this) {
+                      let projectsList = this.fetchRandomList(_this.projects);
+
+                      projectsList.forEach(function (project, i, projects) {
+                          let id = Math.floor(Math.random() * (_this.students.length));
+
+                          projects[i].manager = _this.students[id].firstName;
+                      });
+
+                      return projectsList;
+                  };
+                  this.generate = function() { 
+                      return {
+                          teachers: this.fetchTeachersList(this),
+                          students: this.fetchStudentsList(this),
+                          projects: this.fetchProjectsList(this),
+                      }
+                  }; 
+              }).call(TableDataGenerator.prototype); 
+
+              let data =  new TableDataGenerator(); 
+
+              return data.generate();
+          }
+
+      </script>
+      <script type="text/javascript">
+          function ajaxDataProviderFunction(){
+               return $.ajax({
+                  dataType: 'json',
+                  url: 'https://raw.githubusercontent.com/kupolua/web-presentation/master/json/db.json',
+                  success: function(jsondata){
+
+                      return jsondata;
+                  }
+               });
+          }
+      </script>
+      <script type="text/javascript">
+          function hookFunction(rowData){
+              console.log('\'on row selected\' hook result', rowData);
+          }
+      </script>
+      <script type="text/javascript">
+          function fetchSelectedRows(id){
+              let selectedRows = jsonTableFunctions.fetchSelectedRows(id);
+
+              console.log(selectedRows)
+          }
+        </script>
+
+    <!-- React components -->
+        <!-- Example:
+            data-url="http://localhost:3001/sourceList"
+            data-hook-on-row-selected="hookFunction"
+            data-column-text-length="30"
+            data-custom-fields='[
+                    {"fieldName":"firstName","columnName":"First Name","columnWidth":30},
+                    {"fieldName":"lastName","columnName":"Last Name","columnWidth":30},
+                    {"fieldName":"age","columnName":"Age","columnWidth":10},
+                    {"fieldName":"cellPhone","columnName":"Cell Phone","columnWidth":30},
+                    {"fieldName":"notes","columnName":"Notes","columnWidth":180},
+                    {"fieldName":"terms","columnName":"Terms","columnWidth":180}
+                 ]'
+            data-provider-function="dataProviderFunction"
+            data-provider-function="ajaxDataProviderFunction"
+        -->
+    <button onclick="jsonTableFunctions.refresh('1')">Click to refresh table</button>
+    <button onclick="jsonTableFunctions.filterData('1', 'Pavel')">Click to filter data</button>
+    <button onclick="fetchSelectedRows('1')">Click to fetch selected rows</button>
+    <div class="json-table tableConfig"
+             id="1"
+             data-json-path="$..teachers"
+             data-custom-fields='[
+                {"fieldName":"id","columnName":"ID","columnWidth":5},
+                {"fieldName":"firstName","columnName":"First Name","columnWidth":15},
+                {"fieldName":"lastName","columnName":"Last Name","columnWidth":20},
+                {"fieldName":"age","columnName":"Age","columnWidth":10},
+                {"fieldName":"cellPhone","columnName":"Cell Phone","columnWidth":30},
+                {"fieldName":"notes","columnName":"Notes","columnWidth":180},
+                {"fieldName":"terms","columnName":"Terms","columnWidth":180}
+             ]'
+             data-column-text-length="50"
+             data-show-checkboxes="true"
+             data-hook-on-row-selected="hookFunction"
+             data-provider-function="dataProviderFunction"
+        ></div>
+
+      <button onclick="jsonTableFunctions.refresh('2')">Click to refresh table</button>
+      <button onclick="fetchSelectedRows('2')">Click to fetch selected rows</button>
+      <div class="json-table tableConfig"
+             id="2"
+             data-json-path="$..students"
+             data-column-text-length="50"
+             data-show-checkboxes="true"
+             data-hook-on-row-selected="hookFunction"
+             data-provider-function="ajaxDataProviderFunction"
+      ></div>
+
+      <button onclick="jsonTableFunctions.refresh('3')">Click to refresh table</button>
+      <button onclick="fetchSelectedRows('3')">Click to fetch selected rows</button>
+      <div class="json-table tableConfig"
+             id="3"
+             data-url="https://raw.githubusercontent.com/kupolua/web-presentation/master/json/db.json"
+             data-json-path="$..companies"
+             data-column-text-length="30"
+             data-show-checkboxes="false"
+             data-hook-on-row-selected="hookFunction"
+        ></div>
+
+        <script src="json-table.js"></script>
+  </body>
+</html>
