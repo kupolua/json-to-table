@@ -82,15 +82,25 @@
 
             return data.generate();
         }
-
     </script>
 
+    <script type="text/javascript">
+        function fetchSelectedRows(id){
+            let selectedRows = jsonTableFunctions.fetchSelectedRows(id);
+
+            alert('\'fetch selected rows\' hook result:' + JSON.stringify(selectedRows, null, 4));
+        }
+    </script>
+
+    <button onclick="fetchSelectedRows('1')">Click to fetch selected rows</button>
+
     <div class="json-table tableConfig"
+         id="1"
          data-json-path="$..teachers"
-         data-show-checkboxes="false"
+         data-show-checkboxes="true"
          data-provider-function="dataProviderFunction"
     ></div>
 
-    <script src="https://rawgit.com/kupolua/json-to-table/presentation/html/json-table.js"></script>
+<script src="https://rawgit.com/kupolua/json-to-table/presentation/html/json-table.js"></script>
 </body>
 </html>

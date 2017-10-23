@@ -25,6 +25,11 @@
 
 <body>
     <script type="text/javascript">
+        function hookFunction(rowData){
+            alert('\'on row selected\' hook result:' + JSON.stringify(rowData, null, 4));
+        }
+    </script>
+    <script type="text/javascript">
         function dataProviderFunction() {
             function TableDataGenerator() {
                 this.data = [];
@@ -86,8 +91,7 @@
     </script>
 
     <div class="json-table tableConfig"
-         data-json-path="$..teachers"
-         data-show-checkboxes="false"
+         data-hook-on-row-selected="hookFunction"
          data-provider-function="dataProviderFunction"
     ></div>
 
