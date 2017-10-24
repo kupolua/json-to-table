@@ -10,8 +10,7 @@
   <body>
       <script type="text/javascript">
           function dataProviderFunction() {
-              var data = {
-                  teachers: [
+              var data = [
                       {
                           "firstName": "John",
                           "lastName": "Smith",
@@ -30,15 +29,17 @@
                           "age": 42,
                           "cellPhone": "+005678901234"
                       }
-                  ]
-              };
+                  ];
 
               return data;
           }
 
       </script>
 
-      <div class="json-table" data-provider-function="dataProviderFunction"></div>
+      <div class="json-table"
+           data-provider-function="dataProviderFunction"
+           data-json-path="$"
+      ></div>
 
       <script src="https://rawgit.com/kupolua/json-to-table/presentation/html/json-table.js"></script>
   </body>
